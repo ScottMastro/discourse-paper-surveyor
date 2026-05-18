@@ -1,0 +1,127 @@
+paper_surveyor:
+  paper_surveyor_enabled:
+    default: false
+    client: true
+
+  # --- OpenAlex query / pre-filter (shared across routes) ---
+  paper_surveyor_openalex_mailto:
+    default: ""
+  paper_surveyor_search_query:
+    default: "pangenome OR pan-genome OR \"graph genome\" OR \"variation graph\""
+  paper_surveyor_concept_ids:
+    type: list
+    list_type: simple
+    default: ""
+  paper_surveyor_source_ids:
+    type: list
+    list_type: simple
+    default: ""
+  paper_surveyor_poll_lookback_days:
+    default: 2
+    min: 1
+    max: 30
+
+  # --- Preprint route ---
+  paper_surveyor_preprint_category_id:
+    type: category
+    default: ""
+  paper_surveyor_preprint_work_types:
+    type: list
+    list_type: compact
+    allow_any: false
+    default: "preprint"
+    choices:
+      - preprint
+      - dataset
+
+  # --- Article route ---
+  paper_surveyor_article_category_id:
+    type: category
+    default: ""
+  paper_surveyor_article_work_types:
+    type: list
+    list_type: compact
+    allow_any: false
+    default: "article|review"
+    choices:
+      - article
+      - review
+      - book-chapter
+      - editorial
+      - letter
+      - report
+
+  # --- Posting (shared) ---
+  paper_surveyor_poster_username:
+    type: username
+    default: "system"
+  paper_surveyor_topic_tags:
+    type: tag_list
+    default: "paper-bot"
+
+  # --- Relevance gate (cheap LLM) ---
+  paper_surveyor_relevance_llm_model_id:
+    type: enum
+    default: ""
+    allow_any: false
+    enum: "DiscourseAi::Configuration::LlmEnumerator"
+  paper_surveyor_relevance_agent_id:
+    type: enum
+    default: ""
+    allow_any: false
+    enum: "DiscourseAi::Configuration::AgentEnumerator"
+  paper_surveyor_field_of_interest:
+    type: textarea
+    default: "Pangenomics — both methodological work (pan-genome construction, graph genomes, variation graphs, structural variation analysis, algorithms and tooling) AND applied work that USES pangenome data or tools (population/comparative genomics, GWAS leveraging pangenomes, breeding, evolutionary analyses, microbial pangenomics, etc.). Score relevance highly for any paper that meaningfully constructs, uses, or builds tools for pan-genome / graph-genome representations, even if the primary contribution is biological rather than methodological."
+  paper_surveyor_relevance_threshold:
+    type: float
+    default: 0.6
+    min: 0.0
+    max: 1.0
+
+  # --- Summarization (bigger LLM) ---
+  paper_surveyor_summary_llm_model_id:
+    type: enum
+    default: ""
+    allow_any: false
+    enum: "DiscourseAi::Configuration::LlmEnumerator"
+  paper_surveyor_summary_agent_id:
+    type: enum
+    default: ""
+    allow_any: false
+    enum: "DiscourseAi::Configuration::AgentEnumerator"
+  paper_surveyor_summary_use_full_text:
+    default: true
+  paper_surveyor_extract_figures:
+    default: true
+  paper_surveyor_strip_references:
+    default: true
+  paper_surveyor_figure_llm_model_id:
+    type: enum
+    default: ""
+    allow_any: false
+    enum: "DiscourseAi::Configuration::LlmEnumerator"
+
+  # --- PDF fetching ---
+  paper_surveyor_store_pdfs:
+    default: true
+  paper_surveyor_pdf_max_mb:
+    default: 50
+    min: 1
+    max: 200
+  paper_surveyor_pdf_oa_statuses:
+    type: list
+    list_type: compact
+    allow_any: false
+    default: "gold|green|hybrid"
+    choices:
+      - gold
+      - green
+      - hybrid
+      - bronze
+
+  # --- Scheduling ---
+  paper_surveyor_poll_interval_minutes:
+    default: 60
+    min: 15
+    max: 1440

@@ -1,0 +1,9 @@
+en:
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          paper_surveyor: "Paper Surveyor"
+  js:
+    paper_surveyor:
+      title: "Paper Surveyor"

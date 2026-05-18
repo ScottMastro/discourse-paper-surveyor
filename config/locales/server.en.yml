@@ -1,0 +1,35 @@
+en:
+  site_settings:
+    paper_surveyor_enabled: "Enable the paper surveyor plugin."
+    paper_surveyor_openalex_mailto: "Contact email sent to OpenAlex (puts requests in the polite pool for higher rate limits)."
+    paper_surveyor_search_query: "Free-text search string passed to OpenAlex (matched against title + abstract). Shared by both routes."
+    paper_surveyor_concept_ids: "Optional OpenAlex concept IDs (e.g. C104317684) to AND into the filter. Leave empty to skip."
+    paper_surveyor_source_ids: "Optional OpenAlex source IDs (preprint servers / journals) to restrict to. Leave empty for all."
+    paper_surveyor_poll_lookback_days: "How many days back the scheduled poll considers when looking for new works."
+
+    paper_surveyor_preprint_category_id: "Category where preprint-route topics are posted. Leave empty to disable the preprint route."
+    paper_surveyor_preprint_work_types: "OpenAlex work types treated as 'preprints' (routed to the preprint category)."
+    paper_surveyor_article_category_id: "Category where article-route topics are posted. Leave empty to disable the article route."
+    paper_surveyor_article_work_types: "OpenAlex work types treated as 'articles' (routed to the article category)."
+
+    paper_surveyor_poster_username: "User that authors the auto-generated topics."
+    paper_surveyor_topic_tags: "Tags applied to every auto-generated topic."
+    paper_surveyor_relevance_llm_model_id: "LLM used for the relevance check. Leave empty to skip the LLM gate (keyword/concept filter only). A small/cheap model is recommended."
+    paper_surveyor_field_of_interest: "Plain-language description of the audience's field. Used in the relevance prompt."
+    paper_surveyor_relevance_threshold: "Minimum relevance score (0-1) required to proceed to summarization."
+    paper_surveyor_summary_llm_model_id: "LLM used for the paper summary if no agent is selected. Leave empty to post the abstract verbatim."
+    paper_surveyor_summary_agent_id: "Optional AI Agent (persona) used for the summary. Overrides the LLM setting above when set."
+    paper_surveyor_summary_use_full_text: "If a PDF is available and stored, send its full text to the summarizer instead of just the abstract."
+    paper_surveyor_extract_figures: "Extract figures from the PDF (via pdffigures2) and offer them to the summarizer for inline embedding."
+    paper_surveyor_strip_references: "Strip the References / Bibliography section from extracted PDF text before sending to the LLM (saves tokens)."
+    paper_surveyor_store_pdfs: "Download the PDF (when an OA copy is available) so it can be used for text extraction, figure annotation, and summarization. The PDF is kept server-side and is never linked from the auto-generated topic."
+    paper_surveyor_figure_llm_model_id: "Vision-capable LLM used to classify and describe each image extracted from the PDF. A small/cheap multimodal model is fine. Leave empty to skip annotation (figures are stored unclassified)."
+    paper_surveyor_pdf_max_mb: "Skip PDFs larger than this many megabytes."
+    paper_surveyor_pdf_oa_statuses: "Only download PDFs whose OpenAlex open-access status is one of these."
+    paper_surveyor_poll_interval_minutes: "How often the scheduled poll runs (documentation only — the schedule is currently fixed at 1 hour)."
+  paper_surveyor:
+    post_template:
+      footer: "—\nPosted automatically by paper-surveyor."
+    backfill:
+      started: "Backfill #%{id} queued."
+      not_found: "Backfill not found."
